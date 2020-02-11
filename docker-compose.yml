@@ -1,0 +1,23 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: node app.js
+    volumes:
+      - ./www:/usr/app/
+      - /usr/app/node_modules
+    networks:
+      - www
+  reverseproxy:
+    image: nginx:alpine
+    ports:
+      - 8888:8888
+      - 1337:1337
+    volumes:
+      - ./conf/default.conf:/etc/nginx/conf.d/default.conf
+      - ./conf/ping.conf:/etc/nginx/conf.d/ping.conf
+    networks:
+      - www
+
+networks:
+  www:
