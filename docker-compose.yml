@@ -16,6 +16,7 @@ services:
     volumes:
       - ./conf/default.conf:/etc/nginx/conf.d/default.conf
       - ./conf/ping.conf:/etc/nginx/conf.d/ping.conf
+      - ./conf/nginx.conf:/etc/nginx/nginx.conf
     networks:
       - www
 
